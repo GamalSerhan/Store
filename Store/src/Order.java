@@ -73,14 +73,14 @@ public class Order
 				float booksDiscount = 0;
 				if (itemAmount >= 100) 
 				{
-					booksDiscount = itemAmount * 10 / 100;
+					booksDiscount = ItemDiscount(itemAmount,10);
 				}
 				totalItem = itemAmount - booksDiscount;
 			}
 			if (ProductCategoryIsBikes(item)) 
 			{
 				// 20% discount for Bikes
-				totalItem = itemAmount - itemAmount * 20 / 100;
+				totalItem = itemAmount - ItemDiscount(itemAmount,20);
 			}
 			if (ProductCategoryIsCloathing(item)) 
 			{
@@ -102,6 +102,10 @@ public class Order
 
 		// total=totalItemst + tax + 15 shipping
 		return totalItems + totalItems * 5 / 100 + 15;
+	}
+
+	private float ItemDiscount(float itemAmount, int Discount) {
+		return itemAmount * Discount / 100;
 	}
 
 	private boolean ProductCategoryIsCloathing(OrderItem item) 
