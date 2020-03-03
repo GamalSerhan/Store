@@ -80,7 +80,7 @@ public class Order
 			if (ProductCategoryIsBikes(item)) 
 			{
 				// 20% discount for Bikes
-				totalItem = itemAmount - ItemDiscount(itemAmount,20);
+				totalItem = ItemWith_20percentDiscount(itemAmount);
 			}
 			if (ProductCategoryIsCloathing(item)) 
 			{
@@ -102,6 +102,10 @@ public class Order
 
 		// total=totalItemst + tax + 15 shipping
 		return totalItems + totalItems * 5 / 100 + 15;
+	}
+
+	private float ItemWith_20percentDiscount(float itemAmount) {
+		return itemAmount - ItemDiscount(itemAmount,20);
 	}
 
 	private float ItemDiscount(float itemAmount, int Discount) {
