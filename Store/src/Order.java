@@ -66,8 +66,8 @@ public class Order
 		for (OrderItem item : items) 
 		{
 			float totalItem=0;
-			float itemAmount = getItemAmount(item);
 			
+			float itemAmount = getItemAmount(item);
 			if (ProductCategoryIsAccessories(item)) 
 			{
 				float booksDiscount = 0;
@@ -82,7 +82,7 @@ public class Order
 				// 20% discount for Bikes
 				totalItem = itemAmount - itemAmount * 20 / 100;
 			}
-			if (item.getProduct().getCategory() == ProductCategory.Cloathing) 
+			if (ProductCategoryIsCloathing(item)) 
 			{
 				float cloathingDiscount = 0;
 				if (item.getQuantity() > 2) 
@@ -102,6 +102,11 @@ public class Order
 
 		// total=totalItemst + tax + 15 shipping
 		return totalItems + totalItems * 5 / 100 + 15;
+	}
+
+	private boolean ProductCategoryIsCloathing(OrderItem item) 
+	{
+		return item.getProduct().getCategory() == ProductCategory.Cloathing;
 	}
 
 	private boolean ProductCategoryIsBikes(OrderItem item) 
