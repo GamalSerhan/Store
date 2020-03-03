@@ -67,7 +67,7 @@ public class Order
 		{
 			float totalItem=0;
 			float itemAmount = getItemAmount(item);
-			if (item.getProduct().getCategory() == ProductCategory.Accessories) 
+			if (ProductCategoryIsAccessories(item)) 
 			{
 				float booksDiscount = 0;
 				if (itemAmount >= 100) 
@@ -101,6 +101,11 @@ public class Order
 
 		// total=totalItemst + tax + 15 shipping
 		return totalItems + totalItems * 5 / 100 + 15;
+	}
+
+	private boolean ProductCategoryIsAccessories(OrderItem item) 
+	{
+		return item.getProduct().getCategory() == ProductCategory.Accessories;
 	}
 
 	private float getItemAmount(OrderItem item) 
