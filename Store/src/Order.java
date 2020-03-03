@@ -67,6 +67,7 @@ public class Order
 		{
 			float totalItem=0;
 			float itemAmount = getItemAmount(item);
+			
 			if (ProductCategoryIsAccessories(item)) 
 			{
 				float booksDiscount = 0;
@@ -76,7 +77,7 @@ public class Order
 				}
 				totalItem = itemAmount - booksDiscount;
 			}
-			if (item.getProduct().getCategory() == ProductCategory.Bikes) 
+			if (ProductCategoryIsBikes(item)) 
 			{
 				// 20% discount for Bikes
 				totalItem = itemAmount - itemAmount * 20 / 100;
@@ -101,6 +102,11 @@ public class Order
 
 		// total=totalItemst + tax + 15 shipping
 		return totalItems + totalItems * 5 / 100 + 15;
+	}
+
+	private boolean ProductCategoryIsBikes(OrderItem item) 
+	{
+		return item.getProduct().getCategory() == ProductCategory.Bikes;
 	}
 
 	private boolean ProductCategoryIsAccessories(OrderItem item) 
